@@ -229,28 +229,19 @@ class List{
     }
 
 
-    void Reverse(){
-        temp1 = head;
-        for(int i = 1;i < Size;i++){
-             temp1 = temp1->next;
-             push_front(temp1->data);
-             Size--;
-        }
-    }
+   void reverse(){
+       node *nextNode, *currentNode, *previousNode;
+       previousNode = nullptr;
+       currentNode = head;
+       while(currentNode != nullptr){
+            nextNode = currentNode->next;
+            currentNode->next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+       }
+       head = previousNode;
+   }
 
-
-    void reverse()
-    {
-        temp1 = head;
-        for(int i = 1;i <= Size;i++){
-             x = temp1->next;       
-             temp1->next = temp2;   
-             temp2 = temp1;        
-             temp1 = x;    
-        }
-
-        head = temp2;
-    }
 
 
     void remove_value(T value){
@@ -274,7 +265,7 @@ int main()
     list.push_back(4);
     list.showElements();
     cout << endl;
-    list.remove_value(4);
+    list.reverse();
     cout << endl;
     list.showElements();
     cout << endl;
